@@ -13,4 +13,32 @@ html {
 body {
   color: var(--primary-clr);
   font-family: 'Archivo', sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: 5em;
+}
+
+p {
+  line-height: 24px;
+  margin-bottom: 2em;
+}
+.main-content {
+  padding: 0 1em;
+}
+
+.top-banner {
+  align-items: center;
+  background-color: var(--primary-clr);
+  display: flex;
+  height: 3em;
+  justify-content: center;
+  width: 100vw;
+}
+
+.top-banner__home-link {
+  color: #FFF;
+  font-weight: 100;
+  text-decoration: none;
 }
