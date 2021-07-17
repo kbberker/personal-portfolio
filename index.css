@@ -1,0 +1,15 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+:root {
+  --primary-clr: #023047
+}
+
+body {
+  color: var(--primary-clr);
+}
