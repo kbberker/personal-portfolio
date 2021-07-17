@@ -12,4 +12,5 @@ html {
 
 body {
   color: var(--primary-clr);
+  font-family: 'Archivo', sans-serif;
 }
