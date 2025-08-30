@@ -1,0 +1,64 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Personal website with blog" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div class="nav-container">
+					<h1 class="site-title">Your Name</h1>
+					<ul class="nav-links">
+						<li>
+							<a
+								href="/"
+								class={Astro.url.pathname === "/"
+									? "active"
+									: ""}>Home</a>
+						</li>
+						<li>
+							<a
+								href="/about"
+								class={Astro.url.pathname === "/about"
+									? "active"
+									: ""}>About</a>
+						</li>
+						<li>
+							<a
+								href="/blog"
+								class={Astro.url.pathname === "/blog"
+									? "active"
+									: ""}>Blog</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<main>
+			<slot />
+		</main>
+
+		<footer>
+			<div class="container">
+				<p>&copy; 2024 Your Name. All rights reserved.</p>
+			</div>
+		</footer>
+	</body>
+</html>

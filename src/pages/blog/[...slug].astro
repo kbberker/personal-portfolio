@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getBlogPostBySlug, blogPosts } from '../../utils/blog.js';
+
+export async function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const processedPost = await getBlogPostBySlug(post.slug);
+---
+
+<BaseLayout title={`${post.title} - Blog`} description={post.excerpt}>
+  <section class="blog-hero">
+    <div class="container">
+      <h1>{post.title}</h1>
+      <div class="post-meta">{post.date} • {post.category}</div>
+    </div>
+  </section>
+
+  <section class="blog-content">
+    <div class="container">
+      <article class="post-full">
+        {processedPost && <div set:html={processedPost.htmlContent}></div>}
+      </article>
+
+      <div class="post-navigation">
+        <a href="/blog" class="btn">← Back to Blog</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .post-full {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .post-full h1,
+  .post-full h2,
+  .post-full h3,
+  .post-full h4,
+  .post-full h5,
+  .post-full h6 {
+    color: #ffffff;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-full p {
+    margin-bottom: 1.5rem;
+    color: #d0d0d0;
+  }
+
+  .post-full code {
+    background-color: #1a1a1a;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: #007acc;
+  }
+
+  .post-full pre {
+    background-color: #1a1a1a;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .post-full pre code {
+    background-color: transparent;
+    padding: 0;
+    color: #e0e0e0;
+  }
+
+  .post-full blockquote {
+    border-left: 4px solid #007acc;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: #b0b0b0;
+    font-style: italic;
+  }
+
+  .post-navigation {
+    margin-top: 3rem;
+    text-align: center;
+  }
+</style>

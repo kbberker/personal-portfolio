@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getBlogPosts } from '../../utils/blog.js';
+
+// Get all blog posts
+const posts = await getBlogPosts();
+---
+
+<BaseLayout title="Blog - Personal Website" description="My thoughts, tutorials, and insights on technology and development">
+	<section class="blog-hero">
+		<div class="container">
+			<h1>My Blog</h1>
+			<p>Thoughts, tutorials, and insights on technology and development</p>
+		</div>
+	</section>
+
+	<section class="blog-content">
+		<div class="container">
+			<div class="blog-layout">
+				<div class="blog-posts">
+					{posts.length > 0 ? (
+						posts.map((post) => (
+							<article class="post-card">
+								<h2><a href={`/blog/${post.slug}`}>{post.title}</a></h2>
+								<div class="post-meta">{post.date} • {post.category}</div>
+								<p class="post-excerpt">{post.excerpt}</p>
+								<a href={`/blog/${post.slug}`} class="read-more">Read more →</a>
+							</article>
+						))
+					) : (
+						<p>No blog posts found.</p>
+					)}
+				</div>
+
+				<aside class="blog-sidebar">
+					<div class="sidebar-section">
+						<h3>Categories</h3>
+						<ul id="categories-list">
+							<li><a href="#category-Personal">Personal</a></li>
+							<li><a href="#category-Technology">Technology</a></li>
+							<li><a href="#category-Design">Design</a></li>
+						</ul>
+					</div>
+
+					<div class="sidebar-section">
+						<h3>Recent Posts</h3>
+						<ul id="recent-posts">
+							{posts.slice(0, 5).map((post) => (
+								<li><a href={`/blog/${post.slug}`}>{post.title}</a></li>
+							))}
+						</ul>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
