@@ -23,28 +23,31 @@ const { title, description = "Personal website with blog" } = Astro.props;
 		<header>
 			<nav>
 				<div class="nav-container">
-					<h1 class="site-title">Your Name</h1>
+					<h1 class="site-title">Kenan Berker</h1>
 					<ul class="nav-links">
 						<li>
 							<a
 								href="/"
 								class={Astro.url.pathname === "/"
 									? "active"
-									: ""}>Home</a>
+									: ""}>Home</a
+							>
 						</li>
 						<li>
 							<a
 								href="/about"
 								class={Astro.url.pathname === "/about"
 									? "active"
-									: ""}>About</a>
+									: ""}>About</a
+							>
 						</li>
 						<li>
 							<a
 								href="/blog"
 								class={Astro.url.pathname === "/blog"
 									? "active"
-									: ""}>Blog</a>
+									: ""}>Blog</a
+							>
 						</li>
 					</ul>
 				</div>
@@ -57,7 +60,7 @@ const { title, description = "Personal website with blog" } = Astro.props;
 
 		<footer>
 			<div class="container">
-				<p>&copy; 2024 Your Name. All rights reserved.</p>
+				<p>&copy; 2024 Kenan Berker. All rights reserved.</p>
 			</div>
 		</footer>
 	</body>
