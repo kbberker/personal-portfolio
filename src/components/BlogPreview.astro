@@ -1,0 +1,80 @@
+---
+import Section from "./Section.astro";
+
+const placeholders = [
+  {
+    title: "Notes on building accessible component libraries",
+    desc: "A placeholder for the first post — your writing will live here.",
+  },
+  {
+    title: "What \"fast\" really means on the web",
+    desc: "Another spot reserved for an upcoming essay.",
+  },
+];
+---
+
+<Section label="Blog" id="blog">
+  <div class="head">
+    <h2>Writing</h2>
+    <span class="soon">COMING SOON</span>
+  </div>
+  {
+    placeholders.map((post) => (
+      <div class="post">
+        <span class="date">Soon</span>
+        <div class="post-title">{post.title}</div>
+        <div class="post-desc">{post.desc}</div>
+      </div>
+    ))
+  }
+</Section>
+
+<style>
+  .head {
+    display: flex;
+    align-items: center;
+    gap: var(--s3);
+    margin-bottom: var(--s4);
+  }
+
+  .head :global(h2) {
+    margin: 0;
+  }
+
+  .soon {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 4px 11px;
+    letter-spacing: 0.04em;
+  }
+
+  .post {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: var(--s5) 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .date {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .post-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--fg);
+  }
+
+  .post-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 450;
+  }
+</style>

@@ -1,12 +1,17 @@
 ---
 import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 export interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Personal website with blog" } = Astro.props;
+const {
+  title,
+  description = "Kenan Berker — Frontend Engineer. Fast, accessible, pixel-careful interfaces for the web.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -17,46 +22,21 @@ const { title, description = "Personal website with blog" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@450;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <title>{title}</title>
   </head>
   <body>
-    <header>
-      <nav>
-        <div class="nav-container">
-          <h1 class="site-title">
-            Kenan Berker<span style="color: var(--color-accent);">.</span>
-          </h1>
-          <ul class="nav-links">
-            <li>
-              <a href="/" class={Astro.url.pathname === "/" ? "active" : ""}
-                >Home</a
-              >
-            </li>
-            <li>
-              <a
-                href="/about"
-                class={Astro.url.pathname === "/about" ? "active" : ""}>About</a
-              >
-            </li>
-            <li>
-              <a
-                href="/blog"
-                class={Astro.url.pathname === "/blog" ? "active" : ""}>Blog</a
-              >
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
+    <Header />
     <main>
       <slot />
     </main>
-
-    <footer>
-      <div class="container">
-        <p>&copy; 2024 Kenan Berker. All rights reserved.</p>
-      </div>
-    </footer>
+    <Footer />
   </body>
 </html>

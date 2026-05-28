@@ -1,0 +1,72 @@
+---
+import Section from "./Section.astro";
+
+// TODO: drop the real CV at public/resume.pdf and point href there.
+const resumeUrl = "#";
+---
+
+<Section label="Resume" id="resume">
+  <div class="card">
+    <div>
+      <div class="title">Kenan Berker — CV</div>
+      <div class="sub">PDF · updated 2026</div>
+    </div>
+    <a class="btn" href={resumeUrl} target="_blank" rel="noopener">View</a>
+  </div>
+</Section>
+
+<style>
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    background: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--s4);
+    box-shadow: 0 1px 2px rgba(20, 30, 60, 0.03);
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  .btn {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    padding: 10px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: filter 0.15s;
+  }
+
+  .btn:hover {
+    filter: brightness(1.08);
+  }
+
+  @media (min-width: 720px) {
+    .card {
+      padding: 24px 26px;
+    }
+
+    .title {
+      font-size: 17px;
+    }
+
+    .btn {
+      padding: 11px 20px;
+    }
+  }
+</style>

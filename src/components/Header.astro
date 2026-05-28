@@ -1,0 +1,74 @@
+---
+const links = [
+  { href: "/#about", label: "About" },
+  { href: "/#resume", label: "Resume" },
+  { href: "/#blog", label: "Blog" },
+  { href: "/#contact", label: "Contact" },
+];
+---
+
+<header class="wrap">
+  <div class="bar">
+    <a class="brand" href="/">Kenan Berker<span class="dot">.</span></a>
+    <nav>
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+  </div>
+</header>
+<div class="wrap"><div class="rule"></div></div>
+
+<style>
+  header {
+    padding-block: var(--s5);
+  }
+
+  .bar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s4);
+  }
+
+  .brand {
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  .dot {
+    color: var(--accent);
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s4);
+  }
+
+  nav a {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    color: var(--accent);
+  }
+
+  @media (min-width: 720px) {
+    header {
+      padding-block: 30px;
+    }
+
+    .bar {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav {
+      gap: 30px;
+    }
+  }
+</style>

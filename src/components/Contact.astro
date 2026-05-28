@@ -1,0 +1,17 @@
+---
+import Section from "./Section.astro";
+
+// TODO: confirm the contact address to use.
+const email = "hello@kenanberker.com";
+---
+
+<Section label="Contact" id="contact">
+  <h2>Let's build something.</h2>
+  <p>
+    Open to interesting work and good conversations. Reach me at <a
+      href={`mailto:${email}`}>{email}</a
+    >, or find me on <a href="https://github.com/kbberker/">GitHub</a> and <a
+      href="https://www.linkedin.com/in/kenanberker/">LinkedIn</a
+    >.
+  </p>
+</Section>

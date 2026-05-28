@@ -1,0 +1,29 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="wrap">
+  <div class="inner">
+    <span>&copy; {year} Kenan Berker</span>
+    <span>Built for good.</span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding-block: var(--s5);
+  }
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--s2);
+  }
+
+  span {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+</style>

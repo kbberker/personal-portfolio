@@ -1,6 +1,6 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getBlogPostBySlug, blogPosts } from '../../utils/blog.js';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getBlogPostBySlug, blogPosts } from "../../utils/blog.js";
 
 export async function getStaticPaths() {
   return blogPosts.map((post) => ({
@@ -13,82 +13,147 @@ const { post } = Astro.props;
 const processedPost = await getBlogPostBySlug(post.slug);
 ---
 
-<BaseLayout title={`${post.title} - Blog`} description={post.excerpt}>
-  <section class="blog-hero">
-    <div class="container">
-      <h1>{post.title}</h1>
-      <div class="post-meta">{post.date} • {post.category}</div>
-    </div>
-  </section>
-
-  <section class="blog-content">
-    <div class="container">
-      <article class="post-full">
-        {processedPost && <div set:html={processedPost.htmlContent}></div>}
-      </article>
-
-      <div class="post-navigation">
-        <a href="/blog" class="btn">← Back to Blog</a>
-      </div>
-    </div>
-  </section>
+<BaseLayout title={`${post.title} — Blog`} description={post.excerpt}>
+  <article class="wrap post">
+    <a class="back" href="/blog">← Back to blog</a>
+    <div class="date">{post.date} · {post.category}</div>
+    <h1>{post.title}</h1>
+    {processedPost && <div class="body" set:html={processedPost.htmlContent} />}
+  </article>
 </BaseLayout>
 
 <style>
-  .post-full {
-    max-width: 800px;
-    margin: 0 auto;
+  .post {
+    padding-block: var(--s7);
+    max-width: 720px;
+  }
+
+  .back {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    margin-bottom: var(--s6);
+  }
+
+  .back:hover {
+    text-decoration: underline;
+  }
+
+  .date {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: var(--s3);
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: 38px;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0 0 var(--s6);
+  }
+
+  /* Rendered markdown */
+  .body :global(h1),
+  .body :global(h2),
+  .body :global(h3) {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin: var(--s7) 0 var(--s4);
+  }
+
+  .body :global(h2) {
+    font-size: 26px;
+  }
+
+  .body :global(h3) {
+    font-size: 20px;
+  }
+
+  .body :global(p),
+  .body :global(li) {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--muted);
+    font-weight: 450;
+  }
+
+  .body :global(p) {
+    margin: 0 0 var(--s5);
+  }
+
+  .body :global(ul),
+  .body :global(ol) {
+    margin: 0 0 var(--s5);
+    padding-left: var(--s5);
+  }
+
+  .body :global(li) {
+    margin-bottom: var(--s2);
+  }
+
+  .body :global(strong) {
+    color: var(--fg);
+    font-weight: 700;
+  }
+
+  .body :global(a) {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .body :global(code) {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 14px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 5px;
+  }
+
+  .body :global(pre) {
+    background: #0f141b;
+    color: #cdd6e2;
+    border-radius: 12px;
+    padding: 20px;
+    overflow-x: auto;
+    margin: 0 0 var(--s5);
+  }
+
+  .body :global(pre code) {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: 13px;
     line-height: 1.7;
   }
 
-  .post-full h1,
-  .post-full h2,
-  .post-full h3,
-  .post-full h4,
-  .post-full h5,
-  .post-full h6 {
-    color: #ffffff;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .post-full p {
-    margin-bottom: 1.5rem;
-    color: #d0d0d0;
-  }
-
-  .post-full code {
-    background-color: #1a1a1a;
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    color: #007acc;
-  }
-
-  .post-full pre {
-    background-color: #1a1a1a;
-    padding: 1rem;
-    border-radius: 8px;
-    overflow-x: auto;
-    margin: 1.5rem 0;
-  }
-
-  .post-full pre code {
-    background-color: transparent;
-    padding: 0;
-    color: #e0e0e0;
-  }
-
-  .post-full blockquote {
-    border-left: 4px solid #007acc;
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-    color: #b0b0b0;
+  .body :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding-left: var(--s4);
+    margin: 0 0 var(--s5);
+    color: var(--muted);
     font-style: italic;
   }
 
-  .post-navigation {
-    margin-top: 3rem;
-    text-align: center;
+  .body :global(hr) {
+    border: 0;
+    height: 1px;
+    background: var(--line);
+    margin: var(--s7) 0;
+  }
+
+  @media (min-width: 720px) {
+    .post {
+      padding-block: var(--s8);
+    }
+
+    h1 {
+      font-size: 52px;
+    }
   }
 </style>

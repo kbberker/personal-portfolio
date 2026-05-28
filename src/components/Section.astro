@@ -1,0 +1,92 @@
+---
+export interface Props {
+  label: string;
+  id?: string;
+}
+
+const { label, id } = Astro.props;
+---
+
+<section class="wrap block" id={id}>
+  <div class="grid">
+    <div class="label">{label}</div>
+    <div class="content">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .block {
+    padding-block: var(--s7);
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--s4);
+  }
+
+  /* Shared content typography for every labeled section */
+  .content :global(h2) {
+    font-weight: 800;
+    font-size: 26px;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--s4);
+  }
+
+  .content :global(p) {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+    font-weight: 450;
+    margin: 0 0 var(--s4);
+  }
+
+  .content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .content :global(strong) {
+    color: var(--fg);
+    font-weight: 700;
+  }
+
+  .content :global(a) {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .content :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 720px) {
+    .block {
+      padding-block: var(--s8);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 40px;
+    }
+
+    .label {
+      margin-bottom: 0;
+      padding-top: 6px;
+    }
+
+    .content :global(h2) {
+      font-size: 30px;
+    }
+
+    .content :global(p) {
+      font-size: 17px;
+    }
+  }
+</style>

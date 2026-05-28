@@ -1,0 +1,130 @@
+---
+const socials = [
+  {
+    href: "https://github.com/kbberker/",
+    label: "GitHub",
+    path: "M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.4 9.4 0 0112 6.85c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0022 12.25C22 6.58 17.52 2 12 2z",
+  },
+  {
+    href: "https://www.linkedin.com/in/kenanberker/",
+    label: "LinkedIn",
+    path: "M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 18.34V9.99H5.67v8.35h2.67zM7 8.8a1.55 1.55 0 100-3.1 1.55 1.55 0 000 3.1zm11.34 9.54v-4.57c0-2.45-1.31-3.59-3.06-3.59-1.41 0-2.04.78-2.39 1.32v-1.13h-2.67c.04.75 0 8.35 0 8.35h2.67v-4.66c0-.24.02-.48.09-.65.19-.48.63-.97 1.36-.97.96 0 1.34.73 1.34 1.8v4.48h2.66z",
+  },
+];
+---
+
+<section class="wrap hero">
+  <h1>Kenan<br />Berker</h1>
+  <div class="role">Frontend Engineer</div>
+  <p class="lede">
+    I <b>build for good</b> — fast, accessible, pixel-careful interfaces for the
+    web.
+  </p>
+  <div class="socials">
+    {
+      socials.map((social) => (
+        <a href={social.href} target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d={social.path} />
+          </svg>
+          {social.label}
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--s7);
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: 46px;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    margin: 0;
+  }
+
+  .role {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: var(--s4);
+  }
+
+  .lede {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin-top: var(--s3);
+    font-weight: 500;
+    max-width: 540px;
+  }
+
+  .lede :global(b) {
+    color: var(--fg);
+    font-weight: 700;
+  }
+
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s2);
+    margin-top: var(--s6);
+  }
+
+  .socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s2);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fg);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 9px 15px;
+    transition:
+      color 0.15s,
+      border-color 0.15s,
+      background 0.15s;
+  }
+
+  .socials a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  @media (min-width: 720px) {
+    .hero {
+      padding-block: 88px;
+    }
+
+    h1 {
+      font-size: 80px;
+      line-height: 0.95;
+    }
+
+    .role {
+      font-size: 17px;
+      margin-top: 20px;
+    }
+
+    .lede {
+      font-size: 22px;
+      margin-top: 18px;
+    }
+
+    .socials {
+      gap: var(--s3);
+      margin-top: 36px;
+    }
+
+    .socials a {
+      padding: 9px 16px;
+    }
+  }
+</style>
