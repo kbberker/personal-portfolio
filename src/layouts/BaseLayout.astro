@@ -23,7 +23,9 @@ const { title, description = "Personal website with blog" } = Astro.props;
     <header>
       <nav>
         <div class="nav-container">
-          <h1 class="site-title">Kenan Berker</h1>
+          <h1 class="site-title">
+            Kenan Berker<span style="color: var(--color-accent);">.</span>
+          </h1>
           <ul class="nav-links">
             <li>
               <a href="/" class={Astro.url.pathname === "/" ? "active" : ""}

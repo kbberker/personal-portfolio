@@ -16,6 +16,10 @@ body {
 
 :root {
   --color-bg: oklch(0.987 0.004 250);
+  --color-text-primary: oklch(0.26 0.02 260);
+  --color-text-secondary: oklch(".55 .02 260");
+  --color-line: oklch(".91 .01 255");
+  --color-accent: oklch(0.6 0.13 255);
 }
 
 /* Navigation */
