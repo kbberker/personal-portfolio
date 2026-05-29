@@ -55,13 +55,15 @@ const { label, id } = Astro.props;
     font-weight: 700;
   }
 
-  .content :global(a) {
+  /* Prose links only — buttons and other styled anchors opt out by living
+     outside a <p> and styling themselves. */
+  .content :global(p a) {
     color: var(--accent);
     text-decoration: none;
     font-weight: 600;
   }
 
-  .content :global(a:hover) {
+  .content :global(p a:hover) {
     text-decoration: underline;
   }
 
